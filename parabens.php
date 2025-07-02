@@ -45,101 +45,27 @@ td, th {
 
 </style>
 
-<?php
-/* ini_set('display_errors', 1);
-error_reporting(E_ALL);  */
 
-require_once('./env.php');
-if(!empty($_GET["ref"])){
-$id_site=$_GET["ref"];
-$id_agendamento=$_GET["hora"];//É ISSO MESMO
-//$id_curso=$_GET["id_curso"];
-//$curso=$_GET["curso"];
-
-$select_inscrito="SELECT * FROM tb_site where id='$id_site' ";
-$result_inscrito=mysqli_query($CONNECTION_SITE,$select_inscrito);
-$row_inscrito=mysqli_fetch_assoc($result_inscrito);
-
-$nome=$row_inscrito["nome"];
-$telefone=$row_inscrito["telefone"];
-$id_unidade=$row_inscrito["id_unidade"];
-
-$select_ag="SELECT id,vaga_preenchida,data,hora FROM tb_agenda where id='$id_agendamento'  ";
-$result_ag=mysqli_query($CONNECTION_SITE,$select_ag);
-$row_ag=mysqli_fetch_assoc($result_ag);
-
-$id=$row_ag["id"];
-$data_agendado=$row_ag["data"];
-$hora_agendado=$row_ag["hora"];
-$qtd=$row_ag["vaga_preenchida"]+1;
-
-
-if(empty($_GET["q"])){
-
-  $select_a="SELECT * FROM tb_site_agendado where id_site='$id_site' and id_agenda='$id' ";
-  $result_a=mysqli_query($CONNECTION_SITE,$select_a);
-  $row_a=mysqli_fetch_assoc($result_a);
-  $total_rows=mysqli_num_rows($result_a);
-
-if($total_rows<=0){
-$insert = "insert into tb_site_agendado (id_site,id_agenda) values('$id_site','$id')";
-mysqli_query($CONNECTION_SITE,$insert);
-
-$update = "update tb_agenda set vaga_preenchida='$qtd'  where id='$id'";
-$r_update  = mysqli_query($CONNECTION_SITE,$update);
-}
-
-header("Location:  ?ref=$id_site&hora=$id_agendamento&id_curso=$id_curso&curso=$curso&q=1");
-
-}
- 
-}
-
-?>
   <body>
     <!-- Preloader-->
     <div id="preloader">
       <div class="apland-load"></div>
     </div>
-    <!-- Night Mode Area-->
-    <div class="night-mode-wrapper position-fixed shadow-lg d-flex align-items-center justify-content-center" data-bs-toggle="tooltip" data-bs-placement="right" title="View dark/default mode">
-      <div class="form-check p-0 m-0">
-        <input class="form-check-input p-0 m-0" id="darkSwitch" type="checkbox" value="">
-        <label class="form-check-label" for="darkSwitch"></label>
-      </div>
-      <div class="night-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path>
-        </svg>
-      </div>
-      <div class="default-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path>
-        </svg>
-      </div>
-    </div>
+   
     <!-- Register Area-->
     <div class="register-area d-flex">
       <div class="register-content-wrapper d-flex align-items-center">
-        <div class="register-content">
-          <!-- Logo--><a class="logo" href="#"><img src="img/core-img/logo_liceus.png" alt=""></a>
-          <input type="hidden" id="ref" value="<?php echo $_GET['ref']; ?>">
-          <h1>PARABÉNS! 🥳🙏</h1>
-          <p> seu agendamento foi realizado com sucesso! </p>
-            <p>Esperamos por você! <br> <br>
+        <div class="register-content text-center mb-1">
+          <!-- Logo--><a class="logo" href="#"><img src="img/core-img/logo-azul.png" alt=""></a>
+    
+          <h1 class="mb-4">PARABÉNS! 🥳🙏</h1>
+          <p style="font-size: 1.2em" >Seu agendamento foi realizado com sucesso! </p>
+            <p style="font-size: 1.2em">Esperamos por você! <br> <br>
           
-              <br>
-              <br> Abraços, Lucas do Liceu<br>
+               Abraços, Lucas do Liceu
           </p>
 
-  <!--         <p>Para garantir seu curso EAD 100% GRATUITO envie uma mensagem para nosso whatsapp.</p>
-          <div class="signin-via-others">
-            <a class="btn btn-success w-100 mt-3 " href="#"> Enviar mensagem </a> 
-          </div>
- -->
-
-    
-          
+        
           
           <!-- Footer Copwrite Area-->
           <div class="footer-bottom">
