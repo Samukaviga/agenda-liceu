@@ -74,7 +74,7 @@ td, th {
         </div>
       </div>
       <!-- Register Side Content-->
-    <div class="register-side-content bg-img" style="background-image: url(img/bg-img/hero-6.jpg);"></div>
+    <div class="register-side-content bg-img" style="background-image: url(img/bg-img/fundo.png);"></div>
     </div>
     <!-- jQuery(necessary for all JavaScript plugins without bootstrap js)-->
     <script src="js/bootstrap.bundle.min.js"></script>
